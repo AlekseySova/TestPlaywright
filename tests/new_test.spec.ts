@@ -29,3 +29,13 @@ test('Search for typescript tutorial', async ({ page }) => {
     await expect(page).toHaveURL('https://www.w3schools.com/typescript/index.php');
 
 })
+
+test('Assert Javascript tutorial JS Data Types', async ({page}) => {
+
+    await page.locator(".ga-nav[title='JavaScript Tutorial']").click();
+
+    await page.locator("[href='js_datatypes.asp']").click();
+
+    await expect(page).toHaveURL('https://www.w3schools.com/js/js_datatypes.asp');
+
+})
