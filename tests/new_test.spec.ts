@@ -39,3 +39,17 @@ test('Assert Javascript tutorial JS Data Types', async ({page}) => {
     await expect(page).toHaveURL('https://www.w3schools.com/js/js_datatypes.asp');
 
 })
+
+test('Incorrect login', async ({page}) => {
+
+    await page.locator(".ga-top-login").click();
+
+    await page.locator("[name='email']").fill('asova+incorrect@techmagic.co');
+
+    await page.locator("[name='password']").fill("IncorrectPassword");
+
+    await page.locator("[type='submit']").click();
+
+    await expect(page.locator('.LoginForm_error_text__4fzmN')).toHaveText("Sorry, looks like that’s the wrong email or password.")
+
+})
