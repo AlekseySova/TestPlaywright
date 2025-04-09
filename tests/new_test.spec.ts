@@ -8,7 +8,7 @@ test.beforeEach(async ({ page }) => {
 
 test.afterEach(async ({ page }) => {
     
-    await page.close();
+    //await page.close();
   });
 
 test('Has proper URL', async ({ page }) => {
@@ -22,9 +22,11 @@ test('Has proper URL', async ({ page }) => {
 
 test('Search for typescript tutorial', async ({ page }) => {
 
-    await page.locator('#tnb-google-search-input').fill('typescript');
+    await page.locator("#navbtn_tutorials").click();
 
-    await page.locator('#tnb-google-search-input').press('Enter');
+    await page.locator('#filter-tutorials-input').fill('typescript');
+
+    await page.locator(".ga-top-drop-tut-typescript[title='TypeScript Tutorial']").click();
 
     await expect(page).toHaveURL('https://www.w3schools.com/typescript/index.php');
 
