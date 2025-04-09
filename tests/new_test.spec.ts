@@ -8,17 +8,23 @@ test.beforeEach(async ({ page }) => {
 
 test.afterEach(async ({ page }) => {
     
-    //await page.close();
+    await page.close();
   });
 
 test('Has proper URL', async ({ page }) => {
   
     await page.locator(".ga-nav[title='Java Tutorial']").click();
-
     
     await expect(page).toHaveURL("https://www.w3schools.com/java/default.asp");
 
-  });
+    await expect(page).toHaveTitle("Java Tutorial");
+
+    await expect(page.locator("#main > h1")).toHaveText("Java Tutorial");
+
+    await expect(page.locator(".ws-info.intro > h2")).toHaveText("Learn Java");
+
+
+  })
 
 test('Search for typescript tutorial', async ({ page }) => {
 
@@ -30,6 +36,12 @@ test('Search for typescript tutorial', async ({ page }) => {
 
     await expect(page).toHaveURL('https://www.w3schools.com/typescript/index.php');
 
+    await expect(page).toHaveTitle("TypeScript Tutorial");
+
+    await expect(page.locator("#main > h1")).toHaveText("TypeScript Tutorial");
+
+    await expect(page.locator(".ws-info.intro > h2")).toHaveText("Learn TypeScript");    
+
 })
 
 test('Assert Javascript tutorial JS Data Types', async ({page}) => {
@@ -39,6 +51,12 @@ test('Assert Javascript tutorial JS Data Types', async ({page}) => {
     await page.locator("[href='js_datatypes.asp']").click();
 
     await expect(page).toHaveURL('https://www.w3schools.com/js/js_datatypes.asp');
+
+    await expect(page).toHaveTitle("JavaScript Data Types");
+
+    await expect(page.locator("#main > h1")).toHaveText("JavaScript Data Types");
+
+    await expect(page.locator(".ws-info > h3:first-of-type")).toHaveText("JavaScript has 8 Datatypes");
 
 })
 
