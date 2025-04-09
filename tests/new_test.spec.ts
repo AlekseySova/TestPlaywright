@@ -50,6 +50,6 @@ test('Incorrect login', async ({page}) => {
 
     await page.locator("[type='submit']").click();
 
-    await expect(page.locator('.LoginForm_error_text__4fzmN')).toHaveText("Sorry, looks like that’s the wrong email or password.")
+    await expect(page.locator("[class^='LoginForm_error_text']")).toHaveText("Sorry, looks like that’s the wrong email or password.")
 
 })
