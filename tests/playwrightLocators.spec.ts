@@ -41,6 +41,20 @@ test.afterEach(async ({ page }) => {
 
     await expect(page.locator('#main > h1')).toHaveText('Bootstrap 3 Tutorial');
 
+  });
 
+  test('Get by Text locator', async ({ page }) => {
+
+    
+    await page.getByText('Video Tutorial', { exact: true }).click();
+
+    
+    await expect(page).toHaveURL('https://www.w3schools.com/videos/index.php');
+    
+    await expect(page).toHaveTitle('Video Tutorials - W3Schools');
+    
+    await expect(page.getByText('HTML Video Tutorial')).toHaveText('HTML Video Tutorial');
+    
+    await expect(page.getByText('Learn the basics of HTML in this fun and engaging video tutorial.')).toHaveText('Learn the basics of HTML in this fun and engaging video tutorial.');
 
   });
