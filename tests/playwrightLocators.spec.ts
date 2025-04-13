@@ -45,9 +45,7 @@ test.afterEach(async ({ page }) => {
 
   test('Get by Text locator', async ({ page }) => {
 
-    
     await page.getByText('Video Tutorial', { exact: true }).click();
-
     
     await expect(page).toHaveURL('https://www.w3schools.com/videos/index.php');
     
@@ -57,4 +55,16 @@ test.afterEach(async ({ page }) => {
     
     await expect(page.getByText('Learn the basics of HTML in this fun and engaging video tutorial.')).toHaveText('Learn the basics of HTML in this fun and engaging video tutorial.');
 
+  });
+
+  test('Get by Alt locator', async ({ page }) => {
+
+    await page.getByAltText('Colorpicker').click();
+
+    await expect(page).toHaveURL('https://www.w3schools.com/colors/colors_picker.asp');
+
+    await expect(page).toHaveTitle('HTML Color Picker');
+
+    await expect(page.getByAltText('colormap')).toBeVisible();
+    
   });
