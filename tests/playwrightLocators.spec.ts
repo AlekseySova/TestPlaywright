@@ -19,3 +19,11 @@ test.afterEach(async ({ page }) => {
     await expect(page.getByRole('heading', { name: 'An Overview of All Tutorials' })).toHaveText('An Overview of All Tutorials');
 
   });
+
+  test('Get by Label locator', async ({ page }) => {
+
+    await page.getByLabel('Search our tutorials').fill('Excel');
+
+    await page.getByLabel('Search our tutorials').press('Enter');
+
+  });
