@@ -68,3 +68,15 @@ test.afterEach(async ({ page }) => {
     await expect(page.getByAltText('colormap')).toBeVisible();
     
   });
+
+  test('Get by Title locator', async ({ page }) => {
+
+    await page.getByTitle('How to', {exact: true}).click();
+
+    await expect(page).toHaveURL('https://www.w3schools.com/howto/default.asp');
+
+    await expect(page).toHaveTitle('W3Schools How TO - Code snippets for HTML, CSS and JavaScript');
+
+    await expect(page.locator('#main > h1')).toHaveText('W3Schools How To');
+
+  });
