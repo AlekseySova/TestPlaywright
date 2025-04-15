@@ -51,9 +51,9 @@ test.afterEach(async ({ page }) => {
     
     await expect(page).toHaveTitle('Video Tutorials - W3Schools');
     
-    await expect(page.getByText('HTML Video Tutorial')).toHaveText('HTML Video Tutorial');
+    await expect(page.getByText('HTML Video Tutorial')).toBeVisible();
     
-    await expect(page.getByText('Learn the basics of HTML in this fun and engaging video tutorial.')).toHaveText('Learn the basics of HTML in this fun and engaging video tutorial.');
+    await expect(page.getByText('Learn the basics of HTML in this fun and engaging video tutorial.')).toBeVisible();
 
   });
 
