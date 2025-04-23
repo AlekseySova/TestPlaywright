@@ -15,6 +15,4 @@ test('Get by locators filters', async ({ page }) => {
 
     await page.locator('.blog-slide').filter({ hasText: "Revolutionising Banking: The Best Open Banking Apps"}).filter({ has: page.getByAltText("arrow") }).click();
 
-
-
 });
