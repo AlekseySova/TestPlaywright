@@ -7,12 +7,16 @@ test.beforeEach(async ({ page }) => {
 
 test.afterEach(async ({ page }) => {
 
-    //await page.close();
+    await page.close();
 
 });
 
 test('Get by locators filters', async ({ page }) => {
 
-    await page.locator('.blog-slide').filter({ hasText: "Revolutionising Banking: The Best Open Banking Apps"}).filter({ has: page.getByAltText("arrow") }).click();
+    const blogSlide = page.locator('.blog-slide').filter({ hasText: "Revolutionising Banking: The Best Open Banking Apps" });
+
+    const arrow = blogSlide.locator('[alt="arrow"]');
+
+    await arrow.click();
 
 });
