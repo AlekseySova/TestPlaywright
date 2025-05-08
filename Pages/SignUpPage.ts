@@ -1,17 +1,15 @@
 import {expect, type Locator, type Page} from '@playwright/test';
 
 export class SignUpPage {
-
-    readonly page: Page;
-    readonly emailInput: Locator;
-    readonly passwordInput: Locator;
-    readonly firstNameInput: Locator;
-    readonly lastNameInput: Locator;
-    readonly signUpButton: Locator;
-    readonly errorMessage: Locator
+    private readonly page: Page;
+    private readonly emailInput: Locator;
+    private readonly passwordInput: Locator;
+    private readonly firstNameInput: Locator;
+    private readonly lastNameInput: Locator;
+    private readonly signUpButton: Locator;
+    private readonly errorMessage: Locator
     
     constructor(page: Page) {
-
         this.page = page;
         this.emailInput = page.getByRole('textbox', { name: 'email' });
         this.passwordInput = page.getByRole('textbox', { name: 'password' });
@@ -19,29 +17,29 @@ export class SignUpPage {
         this.lastNameInput = page.getByRole('textbox', { name: 'last name' });
         this.signUpButton = page.getByRole('button', { name: 'Sign Up' });
         this.errorMessage = page.locator("[class^='SignUpForm_error_text']");
-
     }
 
-    async signUp(email: string, password?: string, firstName?: string, lastName?: string) {
-
+    async enterEmail(email: string) {
         await this.emailInput.fill(email);
-        if (password) {
-            await this.passwordInput.fill(password);
-        }
-        if (firstName) {
-            await this.firstNameInput.fill(firstName);
-        }
-        if (lastName) {
-            await this.lastNameInput.fill(lastName);
-        }
-        await this.signUpButton.click();
+    }
 
+    async enterPassword(password: string) {
+        await this.passwordInput.fill(password);
+    }
+
+    async enterFirstName(firstName: string) {
+        await this.firstNameInput.fill(firstName);
+    }
+
+    async enterLastName(lastName: string) {
+        await this.lastNameInput.fill(lastName);
+    }
+
+    async clickSignUpButton() {
+        await this.signUpButton.click();
     }
 
     async checkErrorMessage(expectedMessage: string) {
-
         await expect(this.errorMessage).toHaveText(expectedMessage);
-
     }
-
 }

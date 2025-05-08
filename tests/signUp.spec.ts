@@ -8,20 +8,17 @@ test.beforeEach(async ({ page }) => {
 })
 
 test.afterEach(async ({ page }) => {
-
     await page.close();
-
 })
 
 test('Sign up with wrong format of email without @', async ({ page }) => {
-
     const homePage = new HomePage(page);
     const signUpPage = new SignUpPage(page);
-    
     await homePage.clickSignUpButton();
-
-    await signUpPage.signUp('asova', 'Testtest@47', 'Oleksii', 'Sova');
-
+    await signUpPage.enterEmail('asova');
+    await signUpPage.enterPassword('Testtest@47');
+    await signUpPage.enterFirstName('Oleksii');
+    await signUpPage.enterLastName('Sova');
+    await signUpPage.clickSignUpButton();
     await signUpPage.checkErrorMessage('Please enter a valid email address');
-
 })

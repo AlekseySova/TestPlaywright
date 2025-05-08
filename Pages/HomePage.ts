@@ -1,11 +1,9 @@
 import {expect, type Locator, type Page} from '@playwright/test';
 
 export class HomePage {
-
-    readonly page: Page;
-    readonly logInButton: Locator;
-    readonly signUpButton: Locator;
-
+    private readonly page: Page;
+    private readonly logInButton: Locator;
+    private readonly signUpButton: Locator;
 
     constructor(page: Page) {
         this.page = page;
@@ -18,14 +16,11 @@ export class HomePage {
     }
 
     async clickLogInButton() {
-
         await this.logInButton.click();
     }
 
     async clickSignUpButton() {
-
         await this.signUpButton.click();
-
     }
 
 }
