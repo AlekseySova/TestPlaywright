@@ -1,23 +1,15 @@
 import {expect, type Locator, type Page} from '@playwright/test';
 
 export class SignUpPage {
-    private readonly page: Page;
-    private readonly emailInput: Locator;
-    private readonly passwordInput: Locator;
-    private readonly firstNameInput: Locator;
-    private readonly lastNameInput: Locator;
-    private readonly signUpButton: Locator;
-    private readonly errorMessage: Locator
     
-    constructor(page: Page) {
-        this.page = page;
-        this.emailInput = page.getByRole('textbox', { name: 'email' });
-        this.passwordInput = page.getByRole('textbox', { name: 'password' });
-        this.firstNameInput = page.getByRole('textbox', { name: 'first name' });
-        this.lastNameInput = page.getByRole('textbox', { name: 'last name' });
-        this.signUpButton = page.getByRole('button', { name: 'Sign Up' });
-        this.errorMessage = page.locator("[class^='SignUpForm_error_text']");
-    }
+    constructor(private page: Page) {}
+
+    private emailInput: Locator = this.page.getByRole('textbox', { name: 'email' });
+    private passwordInput: Locator = this.page.getByRole('textbox', { name: 'password' });
+    private firstNameInput: Locator = this.page.getByRole('textbox', { name: 'first name' });
+    private lastNameInput: Locator = this.page.getByRole('textbox', { name: 'last name' });
+    private signUpButton: Locator = this.page.getByRole('button', { name: 'Sign Up' });
+    private errorMessage: Locator = this.page.locator("[class^='SignUpForm_error_text']");
 
     async enterEmail(email: string) {
         await this.emailInput.fill(email);
