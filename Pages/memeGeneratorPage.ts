@@ -1,5 +1,4 @@
 import {expect, Locator, Page} from '@playwright/test';
-import path from 'path';
 
 export class MemeGeneratorPage {
 
@@ -12,8 +11,12 @@ export class MemeGeneratorPage {
         await this.page.goto('https://www.iloveimg.com/meme-generator');
     }
 
-    async clickUploadImageButton() {
-        await this.uploadImageButton.click();
+    async uploadFileByFileChooser(filePath: string) {
+        const [fileChooser] = await Promise.all([
+            this.page.waitForEvent('filechooser'),
+            this.uploadImageButton.click(),
+          ]);
+        await fileChooser.setFiles('./test-files/test.png');
     }
 
     async uploadFilebysetInputFiles(filePath: string) {

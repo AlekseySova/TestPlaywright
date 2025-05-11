@@ -16,3 +16,8 @@ test('Upload file using uploadFile page method', async ({page}) => {
     await memeGeneratorPage.expectImageVisibleInEditor();
 });
 
+test('Upload file using FileChooser', async ({page}) => {
+    const memeGeneratorPage = new MemeGeneratorPage(page);
+    await memeGeneratorPage.uploadFileByFileChooser('./test-files/test.png');
+    await memeGeneratorPage.expectImageVisibleInEditor();
+});
