@@ -1,19 +1,13 @@
 import {expect, type Locator, type Page} from '@playwright/test';
 
 export class LoginPage {
-    private readonly page: Page;
-    private readonly emailInput: Locator;
-    private readonly passwordInput: Locator;
-    private readonly logInButton: Locator;
-    private readonly errorMessage: Locator;
-    
-    constructor(page: Page) {
-        this.page = page;
-        this.emailInput = page.getByRole('textbox', { name: 'Email' });
-        this.passwordInput = page.getByRole('textbox', { name: 'Password' });
-        this.logInButton = page.getByRole('button', { name: 'Login' });
-        this.errorMessage = page.locator("[class^='LoginForm_error_text']");
-    }
+
+    constructor(private page: Page) {}
+
+    private emailInput: Locator = this.page.getByRole('textbox', { name: 'Email'});
+    private passwordInput: Locator = this.page.getByRole('textbox', {name: 'Password'});
+    private logInButton: Locator = this.page.getByRole('button', { name: 'Login' });
+    private errorMessage: Locator = this.page.locator("[class^='LoginForm_error_text']");
 
     async login(email: string, password?: string) {
         await this.emailInput.fill(email);
