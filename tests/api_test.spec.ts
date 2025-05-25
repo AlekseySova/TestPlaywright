@@ -1,17 +1,11 @@
 import {test, expect, request, APIRequestContext} from '@playwright/test';
 import { RestFullAPI } from '../api/RestFullAPI';
+import { CreateObjectData } from '../types/objectTypes';
+import testObjectData from '../test-files/testObjectData.json';
 
 let objectAPI: RestFullAPI;
 let apiContext: APIRequestContext;
 let objectId: string;
-
-const testData = {
-    name: 'Test divice 1',
-    data: {
-        brand: 'Mac Mini M4',
-        year: 2024
-    },
-};
 
 test.describe('RestFullAPI test Suite', () => {
     test.beforeAll(async ({}) => {
@@ -22,12 +16,14 @@ test.describe('RestFullAPI test Suite', () => {
     });
 
     test('Create Object', async () => {
-        const response = await objectAPI.createObject(testData);
+        const data: CreateObjectData = testObjectData.create;
+
+        const response = await objectAPI.createObject(data);
         expect(response.ok()).toBeTruthy();
         const responseBody = await response.json();
         objectId = responseBody.id;
-        expect(responseBody.name).toBe(testData.name);
-        expect(responseBody.data).toEqual(testData.data);
+        expect(responseBody.name).toBe(data.name);
+        expect(responseBody.data).toEqual(data.data);
     });
 
     test('Get Object', async () => {
@@ -35,17 +31,11 @@ test.describe('RestFullAPI test Suite', () => {
         expect(response.ok()).toBeTruthy();
         const responseBody = await response.json();
         expect(responseBody.id).toBe(objectId);
-        expect(responseBody.name).toBe(testData.name);
+        expect(responseBody.name).toBe(testObjectData.create.name);
     });
 
     test('Edit object', async () => {
-        const updatedData = {
-            name: 'Updated Test divice 1',
-            data: {
-                brand: 'Mac Mini M3',
-                year: 2025
-            },
-        };
+        const updatedData: CreateObjectData = testObjectData.update;
         const response = await objectAPI.updateObject(objectId, updatedData);
         expect(response.ok()).toBeTruthy();
         const responseBody = await response.json();
