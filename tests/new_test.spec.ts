@@ -11,7 +11,7 @@ test.afterEach(async ({ page }) => {
     await page.close();
   });
 
-test('Has proper URL', async ({ page }) => {
+test('Has proper URL @smoke', async ({ page }) => {
   
     await page.locator(".ga-nav[title='Java Tutorial']").click();
     
@@ -26,7 +26,7 @@ test('Has proper URL', async ({ page }) => {
 
   })
 
-test('Search for typescript tutorial', async ({ page }) => {
+test('Search for typescript tutorial @smoke', async ({ page }) => {
 
     await page.locator("#navbtn_tutorials").click();
 

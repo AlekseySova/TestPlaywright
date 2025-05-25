@@ -10,7 +10,7 @@ test.afterEach(async ({ page }) => {
     await page.close();
 })
 
-test('Log in with wrong email', async ({ page }) => {
+test('Log in with wrong email @smoke', async ({ page }) => {
     const homePage = new HomePage(page);
     await homePage.clickSignUpButton();
     await homePage.enterLoginEmail('asova+W3Schoolwrong@techmagic.co');
