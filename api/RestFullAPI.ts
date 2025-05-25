@@ -1,4 +1,5 @@
 import { APIRequestContext, APIResponse } from '@playwright/test';
+import { CreateObjectData } from '../types/objectTypes';
 
 export class RestFullAPI {
     private readonly request: APIRequestContext;
@@ -7,7 +8,7 @@ export class RestFullAPI {
         this.request = request;
     }
 
-    async createObject(data: any): Promise<APIResponse> {
+    async createObject(data: CreateObjectData): Promise<APIResponse> {
         return this.request.post('/objects', { data });
     }
 
