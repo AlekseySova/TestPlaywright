@@ -11,7 +11,7 @@ export class HomePage {
     readonly loginErrorMessage: Locator;
     readonly registerFirstNameInput: Locator;
     readonly registerLastNameInput: Locator;
-    readonly resisterEmailInput: Locator;
+    readonly registerEmailInput: Locator;
     readonly registerPasswordInput: Locator;
     readonly registerSubmitButton: Locator;
 
@@ -19,13 +19,13 @@ export class HomePage {
     constructor(page: Page) {
         this.page = page;
         this.signUpButton = page.locator("#tnb-login-btn");
-        this.registerLink = page.getByRole('link', { name: 'Register' });
+        this.registerLink = page.locator('#tnb-login-dropdown-signup-link');
         this.loginEmailInput = page.locator("#tnb-login-dropdown-email");
         this.loginPasswordInput = page.locator("#tnb-login-dropdown-password");
         this.loginSubmitButton = page.locator("#loginFormElement").getByRole('button', { name: 'Sign In' });
         this.registerFirstNameInput = page.locator('#tnb-signup-first-name')
         this.registerLastNameInput = page.locator('#tnb-signup-last-name');
-        this.resisterEmailInput = page.locator('#tnb-signup-email');
+        this.registerEmailInput = page.locator('#tnb-signup-email');
         this.registerPasswordInput = page.locator('#tnb-signup-password');
         this.registerSubmitButton = page.getByRole('button', { name: 'Create account' });
         this.loginErrorMessage = page.locator("#loginStatus");
@@ -56,7 +56,7 @@ export class HomePage {
     }
 
     async enterRegisterFirmName(firmName: string) {
-        await this.resisterEmailInput.fill(firmName);
+        await this.registerFirstNameInput.fill(firmName);
     }
 
     async enterRegisterLastName(lastName: string) {
@@ -64,7 +64,7 @@ export class HomePage {
     }
 
     async enterRegisterEmail(email: string) {
-        await this.resisterEmailInput.fill(email);
+        await this.registerEmailInput.fill(email);
     }
 
     async enterRegisterPassword(password: string) {
@@ -77,5 +77,14 @@ export class HomePage {
 
     async checkLoginErrorMessage(expectedMessage: string) {
         await expect(this.loginErrorMessage).toHaveText(expectedMessage)
+    }
+
+    async getEmailValidationMessage(): Promise<string> {
+        return await this.registerEmailInput.evaluate(input => (input as HTMLInputElement).validationMessage);
+      }
+
+    async checkEmailValidationMessage(expectedMessage: string) {
+        const validationMessage = await this.getEmailValidationMessage();
+        expect(validationMessage).toBe(expectedMessage);
     }
 }
