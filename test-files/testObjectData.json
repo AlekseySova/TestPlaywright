@@ -1,0 +1,16 @@
+{
+    "create": {
+      "name": "Test Device",
+      "data": {
+        "brand": "Mac mini M4",
+        "year": 2024
+      }
+    },
+    "update": {
+      "name": "Updated Device",
+      "data": {
+        "brand": "Mac Mini M2",
+        "year": 2022
+      }
+    }
+  }
