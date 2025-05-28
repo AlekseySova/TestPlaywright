@@ -13,8 +13,8 @@ test.afterEach(async ({ page }) => {
 test('Log in with wrong email @smoke', async ({ page }) => {
     const homePage = new HomePage(page);
     await homePage.clickSignUpButton();
-    await homePage.enterLoginEmail('asova+W3Schoolwrong@techmagic.co');
-    await homePage.enterLoginPassword('Testtest@47');
+    await homePage.enterLoginEmail(process.env.WRONG_LOGIN_EMAIL!);
+    await homePage.enterLoginPassword(process.env.WRONG_LOGIN_PASSWORD!);
     await homePage.clickLoginSubmitButton();
     await homePage.checkLoginErrorMessage('Invalid username or password');
 })
@@ -22,8 +22,8 @@ test('Log in with wrong email @smoke', async ({ page }) => {
 test('log in with wrong password', async ({ page }) => {
     const homePage = new HomePage(page);
     await homePage.clickSignUpButton();
-    await homePage.enterLoginEmail('asova+W3school@techmagic.co');
-    await homePage.enterLoginPassword('WrongPassword');
+    await homePage.enterLoginEmail(process.env.LOGIN_VALID_EMAIL!);
+    await homePage.enterLoginPassword(process.env.WRONG_LOGIN_PASSWORD!);
     await homePage.clickLoginSubmitButton();
     await homePage.checkLoginErrorMessage('Invalid username or password');
 })
