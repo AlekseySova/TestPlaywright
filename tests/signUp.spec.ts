@@ -22,3 +22,4 @@ test('Sign up with wrong format of email without @', async ({ page }) => {
     await signUpPage.clickSignUpButton();
     await signUpPage.checkErrorMessage('Please enter a valid email address');
 })
+
