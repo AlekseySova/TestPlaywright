@@ -7,7 +7,7 @@ export class Home1776Page {
     
     constructor(page: Page) {
         this.page = page;
-        this.loginButton = page.locator('main-header').getByRole('link', { name: 'Log in' });
+        this.loginButton = page.locator("[class$='desktop']").getByRole('link', { name: 'Log in'});
     }
 
     async goto() {
