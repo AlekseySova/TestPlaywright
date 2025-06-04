@@ -5,7 +5,7 @@ import { Login1776Page } from '../Pages/1776LoginPage';
 test.describe('1776 Login Test', () => {
 
     test.beforeEach(async ({ page }) => {
-        await page.goto('https://1776qa-test.dynamo-ny.com/');
+        await page.goto('https://rubicon-qa.dynamo-ny.com');
     });
 
     test('Login with valid credentials', async ({ page }) => {
