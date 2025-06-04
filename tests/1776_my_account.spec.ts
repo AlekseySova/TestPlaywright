@@ -7,3 +7,7 @@ test("Check user email on my account page", async ({HomePage, LoginPage, page })
     await HomePage.clickMyAccountMenuItem();
     await myAccountPage.checkUsersEmail("asova+1776client001@techmagic.co");
 });
+
+test.afterAll(async ({ page }) => {
+    await page.close();
+});
