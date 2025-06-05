@@ -8,3 +8,5 @@ node_modules/
 .DS_Store
 .vscode/settings.json
 .env
+playwright/.auth/user.json
+playwright/.auth/user.json

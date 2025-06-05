@@ -17,7 +17,7 @@ test.describe('1776 My Investment List Test', () => {
         await myInvestmentListPage.checkInvestmentTableExists();
     });
 
-    test.afterAll(async ({ page }) => {
+    test.afterEach(async ({ page }) => {
         await page.close();
     });
 });
