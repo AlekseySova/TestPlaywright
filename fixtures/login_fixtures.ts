@@ -3,18 +3,18 @@ import { Home1776Page} from '../Pages/1776HomePage';
 import { Login1776Page } from '../Pages/1776LoginPage';
 
 type MyFixtures = {
-    HomePage: Home1776Page;
-    LoginPage: Login1776Page;
+    Home: Home1776Page;
+    Login: Login1776Page;
   };
-
+  
 export const test = base.extend<MyFixtures>({
-    HomePage: async ({ page }, use) => {
+    Home: async ({ page}, use) => {
         const homePage = new Home1776Page(page);
         await homePage.goto();
         await homePage.clickLogInButton();
         await use(homePage);
     },
-    LoginPage: async ({ page }, use) => {
+    Login: async ({ page, Home }, use) => {
         const loginPage = new Login1776Page(page);
         await loginPage.fillEmail('asova+1776client001@techmagic.co');
         await loginPage.fillPassword('Testtest@47');

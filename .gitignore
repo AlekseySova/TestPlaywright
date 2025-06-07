@@ -9,4 +9,4 @@ node_modules/
 .vscode/settings.json
 .env
 playwright/.auth/user.json
-playwright/.auth/user.json
+
