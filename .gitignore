@@ -6,4 +6,7 @@ node_modules/
 /blob-report/
 /playwright/.cache/
 .DS_Store
+.vscode/settings.json
 .env
+playwright/.auth/user.json
+
