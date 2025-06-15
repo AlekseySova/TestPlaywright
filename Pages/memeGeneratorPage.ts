@@ -2,10 +2,15 @@ import {expect, Locator, Page} from '@playwright/test';
 
 export class MemeGeneratorPage {
 
-    constructor(private page: Page) {}
+    readonly page: Page;
+    readonly uploadImageButton: Locator;
+    readonly imageInEditor: Locator;
 
-    private uploadImageButton: Locator = this.page.getByRole('link', { name: 'Upload Image' });
-    private imageInEditor: Locator = this.page.locator('#file');
+    constructor(page: Page) {
+        this.page = page;
+        this.uploadImageButton = this.page.getByRole('link', { name: 'Upload Image' });
+        this.imageInEditor = this.page.locator('#file');
+    }
 
     async goto() {
         await this.page.goto('https://www.iloveimg.com/meme-generator');
